@@ -1,0 +1,10 @@
+^D:\GITWORKSPACE\BIKEPASS\SRC\BIKEPASS\BUILD\WINDOWS\CMAKEFILES\55C649A1E5EEB9E733D31EBDCADA1176\INSTALL_FORCE.RULE
+setlocal
+cd .
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

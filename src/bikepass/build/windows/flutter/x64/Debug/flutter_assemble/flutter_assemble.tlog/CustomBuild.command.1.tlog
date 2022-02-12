@@ -1,0 +1,28 @@
+^D:\GITWORKSPACE\BIKEPASS\SRC\BIKEPASS\BUILD\WINDOWS\CMAKEFILES\EA25FC7869B916C5BA85C2D9D67B625F\FLUTTER_WINDOWS.DLL.RULE
+setlocal
+D:\Programme\VisualStudio\IDE\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe -E env "FLUTTER_ROOT=C:\Users\Leon\OneDrive - HTBLuVA Salzburg\Diverses\Programme\VisualStudio\flutter" PROJECT_DIR=D:\GitWorkspace\BikePass\src\bikepass "FLUTTER_ROOT=C:\Users\Leon\OneDrive - HTBLuVA Salzburg\Diverses\Programme\VisualStudio\flutter" FLUTTER_EPHEMERAL_DIR=D:\GitWorkspace\BikePass\src\bikepass\windows\flutter\ephemeral PROJECT_DIR=D:\GitWorkspace\BikePass\src\bikepass FLUTTER_TARGET=D:\GitWorkspace\BikePass\src\bikepass\lib\main.dart DART_DEFINES=Zmx1dHRlci5pbnNwZWN0b3Iuc3RydWN0dXJlZEVycm9ycz10cnVl,RkxVVFRFUl9XRUJfQVVUT19ERVRFQ1Q9dHJ1ZQ== DART_OBFUSCATION=false TRACK_WIDGET_CREATION=true TREE_SHAKE_ICONS=false PACKAGE_CONFIG=D:\GitWorkspace\BikePass\src\bikepass\.dart_tool\package_config.json "C:/Users/Leon/OneDrive - HTBLuVA Salzburg/Diverses/Programme/VisualStudio/flutter/packages/flutter_tools/bin/tool_backend.bat" windows-x64 Debug
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^D:\GITWORKSPACE\BIKEPASS\SRC\BIKEPASS\BUILD\WINDOWS\CMAKEFILES\19C101F5C634AA8DF8609C779C56D3D6\FLUTTER_ASSEMBLE.RULE
+setlocal
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^D:\GITWORKSPACE\BIKEPASS\SRC\BIKEPASS\WINDOWS\FLUTTER\CMAKELISTS.TXT
+setlocal
+D:\Programme\VisualStudio\IDE\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe -SD:/GitWorkspace/BikePass/src/bikepass/windows -BD:/GitWorkspace/BikePass/src/bikepass/build/windows --check-stamp-file D:/GitWorkspace/BikePass/src/bikepass/build/windows/flutter/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="D:\GitWorkspace\BikePass\src\bikepass\build\windows\CMakeFiles\19c101f5c634aa8df8609c779c56d3d6\INSTALL_force.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{2ADF19F5-E1C6-3BF9-8AF9-623FAAD3328D}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

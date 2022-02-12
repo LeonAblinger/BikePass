@@ -1,0 +1,10 @@
+^D:\GITWORKSPACE\BIKEPASS\SRC\BIKEPASS\BUILD\WINDOWS\CMAKEFILES\55C649A1E5EEB9E733D31EBDCADA1176\GENERATE.STAMP.RULE
+setlocal
+D:\Programme\VisualStudio\IDE\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe -SD:/GitWorkspace/BikePass/src/bikepass/windows -BD:/GitWorkspace/BikePass/src/bikepass/build/windows --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file D:/GitWorkspace/BikePass/src/bikepass/build/windows/bikepass.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
