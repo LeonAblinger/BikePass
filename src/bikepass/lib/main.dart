@@ -4,7 +4,7 @@ void main() {
   runApp(const MyApp());
 }
 
-final g_Language = 0; // EN=0, DE=1
+int g_Language = 0; // EN=0, DE=1
 DateTime? g_SelectedDate = DateTime.now();
 
 class MyApp extends StatelessWidget {
@@ -100,25 +100,42 @@ class _BikeState extends State<Bike> {
   }
 
   Widget _settingsLayout() {
-    return Container();
+    return SingleChildScrollView(
+      child: Container(
+        margin: const EdgeInsets.all(20),
+        padding: const EdgeInsets.all(10),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            DropdownButtonFormField(
+              items: const <DropdownMenuItem<int>>[
+                DropdownMenuItem(child: Text('English'), value: 0),
+                DropdownMenuItem(child: Text('Deutsch'), value: 1),
+              ],
+              onChanged: (int? value) {
+                setState(() => g_Language = value!);
+              },
+            ),
+          ],
+        ),
+      ),
+    );
   }
 
   Widget _addBikeLayout() {
-    return Container(
-      child: SingleChildScrollView(
-        child: Container(
-          margin: const EdgeInsets.all(20),
-          padding: const EdgeInsets.all(10),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              _addBikeLayoutContactInfo(),
-              const Divider(height: 40, thickness: 2),
-              _addBikeLayoutBikeInfo(),
-              const Divider(height: 40, thickness: 2),
-              _addBikeLayoutDealerInfo(),
-            ],
-          ),
+    return SingleChildScrollView(
+      child: Container(
+        margin: const EdgeInsets.all(20),
+        padding: const EdgeInsets.all(10),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            _addBikeLayoutContactInfo(),
+            const Divider(height: 40, thickness: 2),
+            _addBikeLayoutBikeInfo(),
+            const Divider(height: 40, thickness: 2),
+            _addBikeLayoutDealerInfo(),
+          ],
         ),
       ),
     );
@@ -155,12 +172,10 @@ class _BikeState extends State<Bike> {
       );
     }
 
-    return Container(
-      child: Column(
+    return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: _fieldWidgets,
-      )
-    );
+      );
   }
 
   Widget _addBikeLayoutBikeInfo() {
@@ -253,19 +268,16 @@ class _BikeState extends State<Bike> {
       children: _bikeInfoChildrenTotal,
     );
 
-    return Container(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          fields,
-          checkboxes,
-        ],
-      ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        fields,
+        checkboxes,
+      ],
     );
   }
 
-  String _selectedDate = '';
-  var _dateController = TextEditingController(text: '');
+  final _dateController = TextEditingController(text: '');
   void _selectDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
       context: context,
@@ -337,13 +349,11 @@ class _BikeState extends State<Bike> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: _fieldWidgets,
     );
-    return Container(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          fields,
-        ],
-      ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        fields,
+      ],
     );
   }
 }
