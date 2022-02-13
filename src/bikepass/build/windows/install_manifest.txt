@@ -1,8 +1,0 @@
-D:/GitWorkspace/BikePass/src/bikepass/build/windows/runner/Debug/data/icudtl.dat
-D:/GitWorkspace/BikePass/src/bikepass/build/windows/runner/Debug/flutter_windows.dll
-D:/GitWorkspace/BikePass/src/bikepass/build/windows/runner/Debug/data/flutter_assets/AssetManifest.json
-D:/GitWorkspace/BikePass/src/bikepass/build/windows/runner/Debug/data/flutter_assets/FontManifest.json
-D:/GitWorkspace/BikePass/src/bikepass/build/windows/runner/Debug/data/flutter_assets/fonts/MaterialIcons-Regular.otf
-D:/GitWorkspace/BikePass/src/bikepass/build/windows/runner/Debug/data/flutter_assets/kernel_blob.bin
-D:/GitWorkspace/BikePass/src/bikepass/build/windows/runner/Debug/data/flutter_assets/NOTICES.Z
-D:/GitWorkspace/BikePass/src/bikepass/build/windows/runner/Debug/data/flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf
