@@ -4,7 +4,8 @@ void main() {
   runApp(const MyApp());
 }
 
-final LANGUAGE = 0; // EN=0, DE=1
+final g_Language = 0; // EN=0, DE=1
+DateTime? g_SelectedDate = DateTime.now();
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -25,34 +26,15 @@ class MyApp extends StatelessWidget {
 }
 
 class _BikeState extends State<Bike> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('BikePass'),
-        centerTitle: true,
-      ),
-      body: _buildBikes(),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _addBike,
-        child: const Text('+'),
-        backgroundColor: Colors.orange,
-      ),
-    );
-  }
-
-  Widget _buildBikes() {
-    return const Text('blabla');
-  }
-
-  void _addBike() {
+  void _pushAddBike() {
     List<String> _title = ['Add new bike', 'Neues Rad hinzufügen'];
+
     Navigator.of(context).push(
       MaterialPageRoute<void>(
         builder: (context) {
           return Scaffold(
             appBar: AppBar(
-              title: Text(_title[LANGUAGE]),
+              title: Text(_title[g_Language]),
             ),
             body: _addBikeLayout(),
             floatingActionButton: FloatingActionButton(
@@ -64,6 +46,61 @@ class _BikeState extends State<Bike> {
         }
       )
     );
+  }
+
+  void _pushSettings() {
+    List<String> _title = ['Settings', 'Einstellungen'];
+
+    Navigator.of(context).push(
+      MaterialPageRoute<void>(
+        builder: (context) {
+          return Scaffold(
+            appBar: AppBar(
+              title: Text(_title[g_Language]),
+            ),
+            body: _settingsLayout(),
+            floatingActionButton: FloatingActionButton(
+              onPressed: () {},
+              child: const Text('Save'),
+              backgroundColor: Colors.orange,
+            ),
+          );
+        }
+      )
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    List<String> _tooltip = ['Settings', 'Einstellungen'];
+
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('BikePass'),
+        centerTitle: true,
+        actions: [
+          IconButton(
+            onPressed: _pushSettings,
+            icon: const Icon(Icons.list),
+            tooltip: _tooltip[g_Language],
+          ),
+        ],
+      ),
+      body: _homeLayout(),
+      floatingActionButton: FloatingActionButton(
+        onPressed: _pushAddBike,
+        child: const Text('+'),
+        backgroundColor: Colors.orange,
+      ),
+    );
+  }
+
+  Widget _homeLayout() {
+    return const Text('blabla');
+  }
+
+  Widget _settingsLayout() {
+    return Container();
   }
 
   Widget _addBikeLayout() {
@@ -96,11 +133,11 @@ class _BikeState extends State<Bike> {
 
     // Add head title
     _fieldWidgets.add(
-      Text(_fieldNames[LANGUAGE][0], style: const TextStyle(fontSize: 20), textAlign: TextAlign.left)
+      Text(_fieldNames[g_Language][0], style: const TextStyle(fontSize: 20), textAlign: TextAlign.left)
     );
 
     // Add form fields with spacer
-    for (int i = 1; i < _fieldNames[LANGUAGE].length; i++) {
+    for (int i = 1; i < _fieldNames[g_Language].length; i++) {
       _fieldWidgets.add(
         const SizedBox(
           height: 10
@@ -111,7 +148,7 @@ class _BikeState extends State<Bike> {
         TextFormField(
           decoration: InputDecoration(
             border: const OutlineInputBorder(),
-            hintText: _fieldNames[LANGUAGE][i],
+            hintText: _fieldNames[g_Language][i],
           ),
           onChanged: (text) {}
         )
@@ -125,8 +162,6 @@ class _BikeState extends State<Bike> {
       )
     );
   }
-
-  
 
   Widget _addBikeLayoutBikeInfo() {
     const List<List<String>> _fieldNames = [
@@ -143,11 +178,11 @@ class _BikeState extends State<Bike> {
 
     // Add head title
     _fieldWidgets.add(
-      Text(_fieldNames[LANGUAGE][0], style: const TextStyle(fontSize: 20), textAlign: TextAlign.left)
+      Text(_fieldNames[g_Language][0], style: const TextStyle(fontSize: 20), textAlign: TextAlign.left)
     );
 
     // Add form fields with spacer
-    for (int i = 1; i < _fieldNames[LANGUAGE].length; i++) {
+    for (int i = 1; i < _fieldNames[g_Language].length; i++) {
       _fieldWidgets.add(
         const SizedBox(
           height: 10
@@ -158,7 +193,7 @@ class _BikeState extends State<Bike> {
         TextFormField(
           decoration: InputDecoration(
             border: const OutlineInputBorder(),
-            hintText: _fieldNames[LANGUAGE][i],
+            hintText: _fieldNames[g_Language][i],
           ),
           onChanged: (text) {}
         )
@@ -174,20 +209,20 @@ class _BikeState extends State<Bike> {
       ['Ladies\'', 'Men\'s', 'Youth', 'Kids', 'E-Bike', 'E-Scooter', 'Mountainbike', 'Racing', 'City', 'Trekking', 'BMX', 'Other'], // EN
       ['Damenrad', 'Herrenrad', 'Jugendrad', 'Kinderrad', 'E-Bike', 'Roller / E-Scooter', 'Mountainbike', 'Rennrad', 'Citybike', 'Trekkingbike', 'BMX-Rad', 'Sonstiges'] // DE
     ];
-    List<bool> _bikeTypeSelected = List<bool>.generate(_bikeTypes[LANGUAGE].length, (i) => false);
+    List<bool> _bikeTypeSelected = List<bool>.generate(_bikeTypes[g_Language].length, (i) => false);
     final _bikeInfoChildrenTotal = <Widget>[];
     List<List<Widget>> _bikeInfoChildren = List<List<Widget>>.generate(6, (i) => <Widget>[]);
 
     // Add bike types to rows which contains a total of 2 options
     int r = 0;
-    for (int i = 0; i < _bikeTypes[LANGUAGE].length; i++) {
+    for (int i = 0; i < _bikeTypes[g_Language].length; i++) {
       _bikeInfoChildren[r].add(
         Expanded(
           child: Padding(
             padding: const EdgeInsets.all(5),
             child: StatefulBuilder(
               builder: (context, _setState) => CheckboxListTile(
-                title: Text(_bikeTypes[LANGUAGE][i]),
+                title: Text(_bikeTypes[g_Language][i]),
                 controlAffinity: ListTileControlAffinity.leading,
                 activeColor: Colors.orange,
                 value: _bikeTypeSelected[i],
@@ -229,22 +264,25 @@ class _BikeState extends State<Bike> {
     );
   }
 
-  DateTime selectedDate = DateTime.now();
+  String _selectedDate = '';
+  var _dateController = TextEditingController(text: '');
   void _selectDate(BuildContext context) async {
-      final DateTime? picked = await showDatePicker(
-        context: context,
-        initialDate: selectedDate, // Refer step 1
-        firstDate: DateTime(2000),
-        lastDate: DateTime(2025),
-        initialEntryMode: DatePickerEntryMode.input,
-      );
-      if (picked != selectedDate) {
-        setState(() => selectedDate = picked! );
-      }
+    final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: g_SelectedDate!, // Refer step 1
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2040),
+      initialEntryMode: DatePickerEntryMode.input,
+    );
+    if (picked != g_SelectedDate) {
+      setState(() {
+        g_SelectedDate = picked!;
+        _dateController.text = g_SelectedDate!.day.toString() + '.' + g_SelectedDate!.month.toString() + '.' + g_SelectedDate!.year.toString();
+      });
+    }
   }
 
   Widget _addBikeLayoutDealerInfo() {
-    //_selectDate(context);
     const List<List<String>> _fieldNames = [
       ['Dealer information', 'Name', 'Address', 'Price', 'Date'], // EN
       ['Händlerinformationen', 'Name', 'Adresse', 'Kaufpreis', 'Kaufdatum'] // DE
@@ -253,11 +291,11 @@ class _BikeState extends State<Bike> {
 
     // Add head title
     _fieldWidgets.add(
-      Text(_fieldNames[LANGUAGE][0], style: const TextStyle(fontSize: 20), textAlign: TextAlign.left)
+      Text(_fieldNames[g_Language][0], style: const TextStyle(fontSize: 20), textAlign: TextAlign.left)
     );
 
     // Add form fields with spacer
-    for (int i = 1; i < _fieldNames[LANGUAGE].length - 1; i++) {
+    for (int i = 1; i < _fieldNames[g_Language].length - 1; i++) {
       _fieldWidgets.add(
         const SizedBox(
           height: 10
@@ -268,7 +306,7 @@ class _BikeState extends State<Bike> {
         TextFormField(
           decoration: InputDecoration(
             border: const OutlineInputBorder(),
-            hintText: _fieldNames[LANGUAGE][i],
+            hintText: _fieldNames[g_Language][i],
           ),
           onChanged: (text) {}
         )
@@ -280,14 +318,18 @@ class _BikeState extends State<Bike> {
           height: 10
         )
     );
+
     _fieldWidgets.add(
       TextFormField(
           decoration: InputDecoration(
             border: const OutlineInputBorder(),
-            hintText: _fieldNames[LANGUAGE][_fieldNames[LANGUAGE].length - 1],
-            enabled: false,
+            hintText: _fieldNames[g_Language][_fieldNames[g_Language].length - 1],
           ),
-          onChanged: (text) {}
+          controller: _dateController,
+          readOnly: true,
+          onTap: () {
+            _selectDate(context);
+          },
         )
       );
 
